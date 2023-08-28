@@ -16,6 +16,7 @@ pipeline{
         }
         stage('Build and Test'){
             steps{
+                sh 'echo Testing github webhook'
                 // build the project and create a JAR file
                 sh 'cd appcode && mvn clean package'
             }
