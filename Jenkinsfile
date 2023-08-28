@@ -9,14 +9,13 @@ pipeline{
         stage("Checkout"){
             steps{
                 sh 'echo Testing E2E CICD Demo'
-                //git branch: 'master', url: 'https://github.com/devopsjourney23/spring-boot-app.git'
-                //checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/devopsjourney23/spring-boot-app.git']])
+                //git branch: 'master', url: 'https://github.com/devopsjourney23/cicd-pipeline-01.git'
+                //checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/devopsjourney23/cicd-pipeline-01.git']])
 
             }
         }
         stage('Build and Test'){
             steps{
-                sh 'ls -ltr'
                 // build the project and create a JAR file
                 sh 'cd appcode && mvn clean package'
             }
@@ -54,7 +53,6 @@ pipeline{
                 sh '''
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifest/deployment.yaml
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" appcode/java/com/lax/StartApplication.java
                     git config --global user.email "lax.aws1@gmail.com"
                     git config --global user.name "devopsjourney23"
                     git config --global --add safe.directory "*"
