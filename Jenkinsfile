@@ -2,7 +2,7 @@ pipeline{
     agent{
         docker {
             image 'maven-docker-agent:latest'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages{
@@ -11,12 +11,11 @@ pipeline{
                 sh 'echo Testing E2E CICD Demo'
                 //git branch: 'master', url: 'https://github.com/devopsjourney23/cicd-pipeline-01.git'
                 //checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/devopsjourney23/cicd-pipeline-01.git']])
-
             }
         }
         stage('Build and Test'){
             steps{
-                sh 'echo Testing github webhook'
+                sh 'echo Testing Github Webook'
                 // build the project and create a JAR file
                 sh 'cd appcode && mvn clean package'
             }
