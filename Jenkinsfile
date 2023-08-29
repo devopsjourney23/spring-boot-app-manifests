@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Build and Test'){
             steps{
-                sh 'echo Testing Github Webook'
+                sh 'echo Testing Github Webook using Localhost Service'
                 // build the project and create a JAR file
                 sh 'cd appcode && mvn clean package'
             }
